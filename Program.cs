@@ -117,10 +117,9 @@ namespace Bio
 
         private static CustomerCondition FindCustomerCondition(uint age)
         {
-            Array.Reverse(customerConditions);
-            foreach (var customerCondition in customerConditions)
+            foreach (var customerCondition in customerConditions.Skip(1))
             {
-                if (age >= customerCondition.MinAge) return customerCondition;
+                if (age < customerCondition.MinAge) return customerCondition;
             }
 
             return customerConditions.FirstOrDefault();
