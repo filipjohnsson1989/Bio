@@ -82,8 +82,8 @@ namespace Bio
         private static void RepeatTextTenTimes()
         {
             Console.WriteLine("Text?");
-                    var text = Console.ReadLine();
-                    Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10)));
+            var text = Console.ReadLine();
+            Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10)));
         }
 
         private static void SellSingelTicket()
