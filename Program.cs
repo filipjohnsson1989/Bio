@@ -23,19 +23,25 @@ namespace Bio
                 switch (input)
                 {
                     case "0":
+                        Console.WriteLine("Stängs");
                         Environment.Exit(0);
                         break;
                     case "1":
-                        Console.WriteLine(FindCustomerCondition(uint.Parse(Console.ReadLine())).Price);
+                        uint cost = 0;
+
+                        Console.WriteLine("Ålder?");
+                        cost = FindCustomerCondition(uint.Parse(Console.ReadLine())).Price;
+                        Console.WriteLine($"Kostnad: {cost}");
                         break;
                     case "2":
                         throw new NotImplementedException();
                         break;
                     case "3":
                         uint totalCost = 0;
-
+                        uint numberOfCustomers = 0;
+                        
                         Console.WriteLine("Hur många?");
-                        var numberOfCustomers = uint.Parse(Console.ReadLine());
+                        numberOfCustomers = uint.Parse(Console.ReadLine());
 
                         for (int i = 0; i < numberOfCustomers; i++)
                         {
