@@ -81,11 +81,13 @@ namespace Bio
 
         private static void RepeatTextTenTimes()
         {
-            var i = 1;
             Console.WriteLine("Text?");
             var text = Console.ReadLine();
-            Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10).Select(t => $"{i}. {t}{(i++ < 10 ? ", " : ".")}")));
 
+            //var i = 1;
+            //Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10).Select(t => $"{i}. {t}{(i++ < 10 ? ", " : ".")}")));
+            for (int i = 1; i <= 10; i++)
+                Console.Write($"{i}. {text}{(i < 10 ? ", " : ".\r\n")}");
         }
 
         private static void SellSingelTicket()
