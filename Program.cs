@@ -2,6 +2,7 @@
 using Bio.Types;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bio
 {
@@ -34,12 +35,14 @@ namespace Bio
                         Console.WriteLine($"Kostnad: {cost}");
                         break;
                     case "2":
-                        throw new NotImplementedException();
+                        Console.WriteLine("Text?");
+                        var text = Console.ReadLine();
+                        Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10)));
                         break;
                     case "3":
                         uint totalCost = 0;
                         uint numberOfCustomers = 0;
-                        
+
                         Console.WriteLine("Hur många?");
                         numberOfCustomers = uint.Parse(Console.ReadLine());
 
