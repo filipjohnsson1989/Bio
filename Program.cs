@@ -92,7 +92,7 @@ namespace Bio
         {
             var minCustomerType = CustomerType.Child;
 
-            for (CustomerType customerType = CustomerType.Centenarian; customerType >= minCustomerType; customerType--)
+            for (CustomerType customerType = CustomerType.Centenarian; customerType > minCustomerType; customerType--)
             {
                 CustomerCondition customerCondition = customerConditions[(int)customerType];
                 if (age >= customerConditions[(int)customerType].MinAge) return customerConditions[(int)customerType];
