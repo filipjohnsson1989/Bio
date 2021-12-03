@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Bio.Structs
 {
-    struct Customer
+    struct CustomerCondition
     {
-        string Name;
-        CustomerType Type;
-        uint Price;
+        public CustomerType Type;
+        public uint MinAge;
+        public uint Price;
     }
 }
