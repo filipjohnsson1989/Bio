@@ -41,7 +41,11 @@ namespace Bio
                         Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10)));
                         break;
                     case "3":
-                        throw new NotImplementedException();
+                        Console.WriteLine("Skriv in en mening med minst 3 ord");
+                        var sentence = Console.ReadLine();
+                        var subSentence = sentence.Split(' ');
+                        if (subSentence.Length >= 3) Console.WriteLine($"Det tredje ordet är \"{subSentence[2]}\"");
+                        else Console.WriteLine("Meningen med minst 3 ord!");
                         break;
                     case "4":
                         uint totalCost = 0;
