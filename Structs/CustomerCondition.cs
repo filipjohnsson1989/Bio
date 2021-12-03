@@ -7,10 +7,22 @@ using System.Threading.Tasks;
 
 namespace Bio.Structs
 {
+    //struct CustomerCondition : IComparable
     struct CustomerCondition
     {
         public CustomerType Type;
         public uint MinAge;
         public uint Price;
+
+        //public int CompareTo(object obj)
+        //{
+        //    var otherCustomerCondition = (CustomerCondition)obj;
+        //    if (MinAge > otherCustomerCondition.MinAge)
+        //        return 1;
+        //    else if (MinAge < otherCustomerCondition.MinAge)
+        //        return -1;
+        //    else
+        //        return 0;
+        //}
     }
 }
