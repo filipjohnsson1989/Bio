@@ -12,9 +12,9 @@ namespace Bio
             do
             {
                 Console.WriteLine("Huvudmeny");
-                Console.WriteLine("0: Stäng ner programmet!");
+                Console.WriteLine("0: Stäng av");
                 Console.WriteLine("1: Ungdom eller pensionär");
-                Console.WriteLine("2: Upprepa tio gånger!");
+                Console.WriteLine("2: Upprepa tio gånger");
                 var input = Console.ReadLine();
                 switch (input)
                 {
