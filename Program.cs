@@ -25,7 +25,7 @@ namespace Bio
                         Environment.Exit(0);
                         break;
                     case "1":
-                        throw new NotImplementedException();
+                        Console.WriteLine(FindCustomerCondition(uint.Parse(Console.ReadLine())).Price);
                         break;
                     case "2":
                         throw new NotImplementedException();
@@ -56,5 +56,17 @@ namespace Bio
         }
 
 
+        private static CustomerCondition FindCustomerCondition(uint age)
+        {
+            var minCustomerType = CustomerType.Child;
+
+            for (CustomerType customerType = CustomerType.Centenarian; customerType >= minCustomerType; customerType--)
+            {
+                CustomerCondition customerCondition = customerConditions[(int)customerType];
+                if (age >= customerConditions[(int)customerType].MinAge) return customerConditions[(int)customerType];
+            }
+
+            return customerConditions[(int)minCustomerType];
+        }
     }
 }
