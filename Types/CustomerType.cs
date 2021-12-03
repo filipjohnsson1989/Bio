@@ -8,8 +8,10 @@ namespace Bio.Types
 {
     enum CustomerType
     {
+        Child,
         Young,
         Adult,
         Pensioner,
+        Centenarian,
     }
 }
