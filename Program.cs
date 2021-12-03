@@ -49,10 +49,9 @@ namespace Bio
 
         private static void AddCustomerCondition(CustomerType customerType, uint minAge, uint price)
         {
-            var customerCondition = customerConditions[(int)customerType];
-            customerCondition.Type = customerType;
-            customerCondition.MinAge = minAge;
-            customerCondition.Price = price;
+            customerConditions[(int)customerType].Type = customerType;
+            customerConditions[(int)customerType].MinAge = minAge;
+            customerConditions[(int)customerType].Price = price;
         }
 
 
