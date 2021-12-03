@@ -117,15 +117,13 @@ namespace Bio
 
         private static CustomerCondition FindCustomerCondition(uint age)
         {
-            var minCustomerType = CustomerType.Child;
-
-            for (CustomerType customerType = CustomerType.Centenarian; customerType > minCustomerType; customerType--)
+            Array.Reverse(customerConditions);
+            foreach (var customerCondition in customerConditions)
             {
-                CustomerCondition customerCondition = customerConditions[(int)customerType];
-                if (age >= customerConditions[(int)customerType].MinAge) return customerConditions[(int)customerType];
+                if (age >= customerCondition.MinAge) return customerCondition;
             }
 
-            return customerConditions[(int)minCustomerType];
+            return customerConditions.FirstOrDefault();
         }
 
         private static void AddCustomerCondition(CustomerType customerType, uint minAge, uint price)
