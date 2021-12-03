@@ -40,6 +40,9 @@ namespace Bio
                         Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10)));
                         break;
                     case "3":
+                        throw new NotImplementedException();
+                        break;
+                    case "4":
                         uint totalCost = 0;
                         uint numberOfCustomers = 0;
 
