@@ -92,11 +92,31 @@ namespace Bio
 
         private static void SellSingelTicket()
         {
-            uint cost = 0;
-
             Console.WriteLine("Ålder?");
-            cost = FindCustomerCondition(uint.Parse(Console.ReadLine())).Price;
-            Console.WriteLine($"Kostnad: {cost}");
+            var customerCondition = FindCustomerCondition(uint.Parse(Console.ReadLine()));
+            var cost = customerCondition.Price;
+            var textType = "";
+            switch (customerCondition.Type)
+            {
+                case CustomerType.Centenarian:
+                    textType = "Hundraåring";
+                    break;
+                case CustomerType.Pensioner:
+                    textType = "Pensionär";
+                    break;
+                case CustomerType.Adult:
+                    textType = "Standard";
+                    break;
+                case CustomerType.Young:
+                    textType = "Ungdoms";
+                    break;
+                case CustomerType.Child:
+                    textType = "Barn";
+                    break;
+                default:
+                    break;
+            }
+            Console.WriteLine($"{textType}pris: {cost}");
         }
 
         private static void ClosePrograme()
