@@ -19,7 +19,8 @@ namespace Bio
                 Console.WriteLine("0: Stäng av");
                 Console.WriteLine("1: Sälja enskild");
                 Console.WriteLine("2: Upprepa tio gånger");
-                Console.WriteLine("3: Sälja till ett helt sällskap");
+                Console.WriteLine("3: Hitta det tredje ordet");
+                Console.WriteLine("4: Sälja till ett helt sällskap");
                 var input = Console.ReadLine();
                 switch (input)
                 {
