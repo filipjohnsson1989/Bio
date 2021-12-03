@@ -3,6 +3,7 @@ using Bio.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Bio
 {
@@ -43,7 +44,7 @@ namespace Bio
                     case "3":
                         Console.WriteLine("Skriv in en mening med minst 3 ord");
                         var sentence = Console.ReadLine();
-                        var subSentence = sentence.Split(' ');
+                        var subSentence = Regex.Replace(sentence, @"\s+", " ").Split(' ');
                         if (subSentence.Length >= 3) Console.WriteLine($"Det tredje ordet är \"{subSentence[2]}\"");
                         else Console.WriteLine("Meningen med minst 3 ord!");
                         break;
