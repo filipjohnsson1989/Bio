@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Bio.Structs;
+using Bio.Types;
+using System;
 using System.Collections.Generic;
 
 namespace Bio
 {
     class Program
     {
-
+        private static CustomerCondition[] CustomerConditions = new CustomerCondition[5];
         static void Main(string[] args)
         {
             // Huvudmeny
@@ -34,5 +36,25 @@ namespace Bio
             } while (true);
 
         }
+
+        private static void SeedData()
+        {
+            AddCustomerCondition(customerType: CustomerType.Child, minAge: 0, price: 0);
+            AddCustomerCondition(customerType: CustomerType.Young, minAge: 5, price: 0);
+            AddCustomerCondition(customerType: CustomerType.Adult, minAge: 20, price: 0);
+            AddCustomerCondition(customerType: CustomerType.Pensioner, minAge: 65, price: 0);
+            AddCustomerCondition(customerType: CustomerType.Centenarian, minAge: 100, price: 0);
+        }
+
+        private static void AddCustomerCondition(CustomerType customerType, uint minAge, uint price)
+        {
+            var customerCondition = CustomerConditions[(int)customerType];
+            customerCondition.Type = customerType;
+            customerCondition.MinAge = minAge;
+            customerCondition.Price = price;
+        }
+
+
+
     }
 }
