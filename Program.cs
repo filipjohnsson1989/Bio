@@ -16,8 +16,9 @@ namespace Bio
             {
                 Console.WriteLine("Huvudmeny");
                 Console.WriteLine("0: Stäng av");
-                Console.WriteLine("1: Ungdom eller pensionär");
+                Console.WriteLine("1: Sälja enskild");
                 Console.WriteLine("2: Upprepa tio gånger");
+                Console.WriteLine("3: Sälja till ett helt sällskap");
                 var input = Console.ReadLine();
                 switch (input)
                 {
@@ -29,6 +30,21 @@ namespace Bio
                         break;
                     case "2":
                         throw new NotImplementedException();
+                        break;
+                    case "3":
+                        uint totalCost = 0;
+
+                        Console.WriteLine("Hur många?");
+                        var numberOfCustomers = uint.Parse(Console.ReadLine());
+
+                        for (int i = 0; i < numberOfCustomers; i++)
+                        {
+                            Console.WriteLine("Åldrar?");
+                            totalCost += FindCustomerCondition(uint.Parse(Console.ReadLine())).Price;
+                        }
+
+                        Console.WriteLine($"Antal personer: {numberOfCustomers}");
+                        Console.WriteLine($"Totalkostnad: {totalCost}");
                         break;
                     default:
                         Console.WriteLine("Det är felaktig input");
