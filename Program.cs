@@ -70,10 +70,19 @@ namespace Bio
 
         private static void FindTheThirdWord()
         {
-            var sentence = Tool<string>.AskForAnInput("Skriv upp en mening med minst 3 ord", "en menning");
-            var subSentence = Regex.Replace(sentence, @"\s+", " ").Split(' ');
-            if (subSentence.Length >= 3) Console.WriteLine($"Det tredje ordet är \"{subSentence[2]}\"");
-            else Console.WriteLine("Meningen med minst 3 ord!");
+            bool success = false;
+            do
+            {
+                var sentence = Tool<string>.AskForAnInput("Skriv upp en mening med minst 3 ord", "en menning med minst 3 ord");
+                var subSentence = Regex.Replace(sentence.Trim(), @"\s+", " ").Split(' ');
+                
+                if (subSentence.Length >= 3)
+                {
+                    Console.WriteLine($"Det tredje ordet är \"{subSentence[2]}\"");
+                    success = true;
+                }
+
+            } while (!success);
         }
 
         private static void RepeatTextTenTimes()
