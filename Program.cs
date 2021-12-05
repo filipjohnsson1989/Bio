@@ -23,22 +23,22 @@ namespace Bio
 
         private static void GetUserInput()
         {
-            var input = Console.ReadLine();
+            var input = Tool<uint>.AskForAnInput(string.Empty, "ett val");
             switch (input)
             {
-                case "0":
+                case 0:
                     ClosePrograme();
                     break;
-                case "1":
+                case 1:
                     SellSingelTicket();
                     break;
-                case "2":
+                case 2:
                     RepeatTextTenTimes();
                     break;
-                case "3":
+                case 3:
                     FindTheThirdWord();
                     break;
-                case "4":
+                case 4:
                     SellGroupTeckets();
                     break;
                 default:
@@ -57,13 +57,11 @@ namespace Bio
             uint totalCost = 0;
             uint numberOfCustomers = 0;
 
-            Console.WriteLine("Hur många?");
-            numberOfCustomers = uint.Parse(Console.ReadLine());
+            numberOfCustomers = Tool<uint>.AskForAnInput("Hur många?", "antal personer");
 
             for (int i = 0; i < numberOfCustomers; i++)
             {
-                Console.WriteLine("Åldrar?");
-                totalCost += FindCustomerCondition(uint.Parse(Console.ReadLine())).Price;
+                totalCost += FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder")).Price;
             }
 
             Console.WriteLine($"Antal personer: {numberOfCustomers}");
@@ -72,8 +70,7 @@ namespace Bio
 
         private static void FindTheThirdWord()
         {
-            Console.WriteLine("Skriv in en mening med minst 3 ord");
-            var sentence = Console.ReadLine();
+            var sentence = Tool<string>.AskForAnInput("Skriv upp en mening med minst 3 ord", "en menning");
             var subSentence = Regex.Replace(sentence, @"\s+", " ").Split(' ');
             if (subSentence.Length >= 3) Console.WriteLine($"Det tredje ordet är \"{subSentence[2]}\"");
             else Console.WriteLine("Meningen med minst 3 ord!");
@@ -81,8 +78,7 @@ namespace Bio
 
         private static void RepeatTextTenTimes()
         {
-            Console.WriteLine("Text?");
-            var text = Console.ReadLine();
+            var text = Tool<string>.AskForAnInput("Text?", "en text");
 
             //var i = 1;
             //Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10).Select(t => $"{i}. {t}{(i++ < 10 ? ", " : ".")}")));
@@ -92,8 +88,7 @@ namespace Bio
 
         private static void SellSingelTicket()
         {
-            Console.WriteLine("Ålder?");
-            var customerCondition = FindCustomerCondition(uint.Parse(Console.ReadLine()));
+            var customerCondition = FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder"));
             var cost = customerCondition.Price;
             var textType = "";
             switch (customerCondition.Type)
@@ -147,9 +142,9 @@ namespace Bio
 
         private static void AddCustomerCondition(CustomerType customerType, uint minAge, uint price)
         {
-            customerConditions[(int)customerType].Type = customerType;
-            customerConditions[(int)customerType].MinAge = minAge;
-            customerConditions[(int)customerType].Price = price;
+            customerConditions[(uint)customerType].Type = customerType;
+            customerConditions[(uint)customerType].MinAge = minAge;
+            customerConditions[(uint)customerType].Price = price;
         }
 
         private static void SeedData()
