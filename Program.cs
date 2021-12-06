@@ -9,7 +9,9 @@ namespace Bio
 {
     class Program
     {
+        private static uint customerConditionIndex = 0;
         private static CustomerCondition[] customerConditions = new CustomerCondition[5];
+
         static void Main(string[] args)
         {
             SeedData();
@@ -20,31 +22,31 @@ namespace Bio
                 GetUserInput();
             } while (true);
         }
-        
+
         private static void SeedData()
         {
-            AddCustomerCondition(customerType: AgeType.Child, minAge: 0, price: 0);
-            AddCustomerCondition(customerType: AgeType.Young, minAge: 5, price: 80);
-            AddCustomerCondition(customerType: AgeType.Adult, minAge: 20, price: 120);
-            AddCustomerCondition(customerType: AgeType.Pensioner, minAge: 65, price: 90);
-            AddCustomerCondition(customerType: AgeType.Centenarian, minAge: 100, price: 0);
+            AddCustomerCondition(ageType: AgeType.Centenarian, price: 0);
+            AddCustomerCondition(ageType: AgeType.Pensioner, price: 90);
+            AddCustomerCondition(ageType: AgeType.Adult, price: 120);
+            AddCustomerCondition(ageType: AgeType.Young, price: 80);
+            AddCustomerCondition(ageType: AgeType.Child, price: 0);
         }
 
         private static CustomerCondition FindCustomerCondition(uint age)
         {
             foreach (var customerCondition in customerConditions.Take(customerConditions.Length - 1))
             {
-                if (age >= customerCondition.MinAge) return customerCondition;
+                if (age >= (uint) customerCondition.AgeType) return customerCondition;
             }
 
             return customerConditions.LastOrDefault();
         }
 
-        private static void AddCustomerCondition(AgeType customerType, uint minAge, uint price)
+        private static void AddCustomerCondition(AgeType ageType, uint price)
         {
-            customerConditions[(uint)customerType].AgeType = customerType;
-            customerConditions[(uint)customerType].MinAge = minAge;
-            customerConditions[(uint)customerType].Price = price;
+            customerConditions[customerConditionIndex].AgeType = ageType;
+            customerConditions[customerConditionIndex].Price = price;
+            customerConditionIndex++;
         }
 
         private static void ShowMainMenu()
@@ -82,7 +84,7 @@ namespace Bio
                     break;
             }
         }
-        
+
         private static void ClosePrograme()
         {
             Console.WriteLine("Stängs");
@@ -126,7 +128,7 @@ namespace Bio
             for (int i = 1; i <= 10; i++)
                 Console.Write($"{i}. {text}{(i < 10 ? ", " : ".\r\n")}");
         }
-        
+
         private static void FindTheThirdWord()
         {
             bool success = false;
@@ -134,7 +136,7 @@ namespace Bio
             {
                 var sentence = Tool<string>.AskForAnInput("Skriv upp en mening med minst 3 ord", "en menning med minst 3 ord");
                 var subSentence = Regex.Replace(sentence.Trim(), @"\s+", " ").Split(' ');
-                
+
                 if (subSentence.Length >= 3)
                 {
                     Console.WriteLine($"Det tredje ordet är \"{subSentence[2]}\"");
