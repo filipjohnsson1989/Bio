@@ -10,7 +10,7 @@ namespace Bio.Structs
     //struct CustomerCondition : IComparable
     struct CustomerCondition
     {
-        public CustomerType Type;
+        public AgeType Type;
         public uint MinAge;
         public uint Price;
 
