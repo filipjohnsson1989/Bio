@@ -9,12 +9,10 @@ namespace Bio
 {
     class Program
     {
-        private static uint customerConditionIndex = 0;
-        private static CustomerCondition[] customerConditions = new CustomerCondition[5];
+        private static Sell sell = new Sell();
 
         static void Main(string[] args)
         {
-            SeedData();
             do
             {
                 // Huvudmeny
@@ -23,31 +21,7 @@ namespace Bio
             } while (true);
         }
 
-        private static void SeedData()
-        {
-            AddCustomerCondition(ageType: AgeType.Centenarian, ticketType: TicketType.Free);
-            AddCustomerCondition(ageType: AgeType.Pensioner, ticketType: TicketType.Pensioner);
-            AddCustomerCondition(ageType: AgeType.Adult, ticketType: TicketType.Adult);
-            AddCustomerCondition(ageType: AgeType.Young, ticketType: TicketType.Young);
-            AddCustomerCondition(ageType: AgeType.Child, ticketType: TicketType.Free);
-        }
 
-        private static CustomerCondition FindCustomerCondition(uint age)
-        {
-            foreach (var customerCondition in customerConditions.Take(customerConditions.Length - 1))
-            {
-                if (age >= (uint) customerCondition.AgeType) return customerCondition;
-            }
-
-            return customerConditions.LastOrDefault();
-        }
-
-        private static void AddCustomerCondition(AgeType ageType, TicketType ticketType)
-        {
-            customerConditions[customerConditionIndex].AgeType = ageType;
-            customerConditions[customerConditionIndex].TicketType = ticketType;
-            customerConditionIndex++;
-        }
 
         private static void ShowMainMenu()
         {
@@ -93,10 +67,15 @@ namespace Bio
 
         private static void SellSingelTicket()
         {
-            var customerCondition = FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder"));
-            var cost = (uint) customerCondition.TicketType;
+            var age = Tool<uint>.AskForAnInput("Ålder?", "en ålder");
+            //var customerCondition = Sell.FindCustomerCondition(age);
+            //var cost = (uint) customerCondition.TicketType;
+            var customer= sell.AddCustomer(age);
+
             var textType = "";
-            switch (customerCondition.AgeType)
+
+            //switch (customerCondition.AgeType)
+            switch (customer.AgeType)
             {
                 case AgeType.Centenarian:
                     textType = "Hundraåring";
@@ -116,7 +95,9 @@ namespace Bio
                 default:
                     break;
             }
-            Console.WriteLine($"{textType}pris: {cost}");
+            //Console.WriteLine($"{textType}pris: {cost}");
+            Console.WriteLine($"{textType}pris: {sell.TotalCost}");
+            sell.RemoveAllCustomers();
         }
 
         private static void RepeatTextTenTimes()
@@ -148,18 +129,24 @@ namespace Bio
 
         private static void SellGroupTeckets()
         {
-            uint totalCost = 0;
+            //uint totalCost = 0;
             uint numberOfCustomers = 0;
 
             numberOfCustomers = Tool<uint>.AskForAnInput("Hur många?", "antal personer");
 
             for (int i = 0; i < numberOfCustomers; i++)
             {
-                totalCost += (uint) FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder")).TicketType;
+                var age = Tool<uint>.AskForAnInput("Ålder?", "en ålder");
+                sell.AddCustomer(age);
+                //var customerCondition = Sell.FindCustomerCondition(age);
+                //totalCost += (uint)customerCondition.TicketType;
             }
 
-            Console.WriteLine($"Antal personer: {numberOfCustomers}");
-            Console.WriteLine($"Totalkostnad: {totalCost}");
+            //Console.WriteLine($"Antal personer: {numberOfCustomers}");
+            Console.WriteLine($"Antal personer: {sell.NumberOfCustomers}");
+            Console.WriteLine($"Totalkostnad: {sell.TotalCost}");
+
+            sell.RemoveAllCustomers();
         }
 
         private static void WrongInput()
