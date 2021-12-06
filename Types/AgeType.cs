@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Bio.Types
 {
-    enum CustomerType
+    enum AgeType
     {
-        Centenarian,
-        Pensioner,
-        Adult,
-        Young,
-        Child,
+        Centenarian = 100,
+        Pensioner = 65,
+        Adult = 20,
+        Young = 5,
+        Child = 0,
     }
 }

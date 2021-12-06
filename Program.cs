@@ -23,11 +23,11 @@ namespace Bio
         
         private static void SeedData()
         {
-            AddCustomerCondition(customerType: CustomerType.Child, minAge: 0, price: 0);
-            AddCustomerCondition(customerType: CustomerType.Young, minAge: 5, price: 80);
-            AddCustomerCondition(customerType: CustomerType.Adult, minAge: 20, price: 120);
-            AddCustomerCondition(customerType: CustomerType.Pensioner, minAge: 65, price: 90);
-            AddCustomerCondition(customerType: CustomerType.Centenarian, minAge: 100, price: 0);
+            AddCustomerCondition(customerType: AgeType.Child, minAge: 0, price: 0);
+            AddCustomerCondition(customerType: AgeType.Young, minAge: 5, price: 80);
+            AddCustomerCondition(customerType: AgeType.Adult, minAge: 20, price: 120);
+            AddCustomerCondition(customerType: AgeType.Pensioner, minAge: 65, price: 90);
+            AddCustomerCondition(customerType: AgeType.Centenarian, minAge: 100, price: 0);
         }
 
         private static CustomerCondition FindCustomerCondition(uint age)
@@ -40,7 +40,7 @@ namespace Bio
             return customerConditions.LastOrDefault();
         }
 
-        private static void AddCustomerCondition(CustomerType customerType, uint minAge, uint price)
+        private static void AddCustomerCondition(AgeType customerType, uint minAge, uint price)
         {
             customerConditions[(uint)customerType].Type = customerType;
             customerConditions[(uint)customerType].MinAge = minAge;
@@ -96,19 +96,19 @@ namespace Bio
             var textType = "";
             switch (customerCondition.Type)
             {
-                case CustomerType.Centenarian:
+                case AgeType.Centenarian:
                     textType = "Hundraåring";
                     break;
-                case CustomerType.Pensioner:
+                case AgeType.Pensioner:
                     textType = "Pensionär";
                     break;
-                case CustomerType.Adult:
+                case AgeType.Adult:
                     textType = "Standard";
                     break;
-                case CustomerType.Young:
+                case AgeType.Young:
                     textType = "Ungdoms";
                     break;
-                case CustomerType.Child:
+                case AgeType.Child:
                     textType = "Barn";
                     break;
                 default:
