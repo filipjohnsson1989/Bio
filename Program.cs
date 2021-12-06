@@ -42,7 +42,7 @@ namespace Bio
 
         private static void AddCustomerCondition(AgeType customerType, uint minAge, uint price)
         {
-            customerConditions[(uint)customerType].Type = customerType;
+            customerConditions[(uint)customerType].AgeType = customerType;
             customerConditions[(uint)customerType].MinAge = minAge;
             customerConditions[(uint)customerType].Price = price;
         }
@@ -94,7 +94,7 @@ namespace Bio
             var customerCondition = FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder"));
             var cost = customerCondition.Price;
             var textType = "";
-            switch (customerCondition.Type)
+            switch (customerCondition.AgeType)
             {
                 case AgeType.Centenarian:
                     textType = "Hundraåring";
