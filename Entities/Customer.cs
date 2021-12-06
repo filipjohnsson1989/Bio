@@ -54,6 +54,7 @@ namespace Bio.Entities
         }
 
         //Vi specialiserar betendet av ToString() metoden. Istället för default implementationen så vill vi att den här koden körs när vi anropar .ToString() på en Customer instans.
+        //Det finns en annan kod för samma logik i den CustomerCondition klassen
         public override string ToString()
         {
             string textType=string.Empty;
