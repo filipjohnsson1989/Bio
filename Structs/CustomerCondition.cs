@@ -11,7 +11,7 @@ namespace Bio.Structs
     struct CustomerCondition
     {
         public AgeType AgeType;
-        public uint Price;
+        public TicketType TicketType;
 
         //public int CompareTo(object obj)
         //{

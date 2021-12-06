@@ -25,11 +25,11 @@ namespace Bio
 
         private static void SeedData()
         {
-            AddCustomerCondition(ageType: AgeType.Centenarian, price: 0);
-            AddCustomerCondition(ageType: AgeType.Pensioner, price: 90);
-            AddCustomerCondition(ageType: AgeType.Adult, price: 120);
-            AddCustomerCondition(ageType: AgeType.Young, price: 80);
-            AddCustomerCondition(ageType: AgeType.Child, price: 0);
+            AddCustomerCondition(ageType: AgeType.Centenarian, ticketType: TicketType.Free);
+            AddCustomerCondition(ageType: AgeType.Pensioner, ticketType: TicketType.Pensioner);
+            AddCustomerCondition(ageType: AgeType.Adult, ticketType: TicketType.Adult);
+            AddCustomerCondition(ageType: AgeType.Young, ticketType: TicketType.Young);
+            AddCustomerCondition(ageType: AgeType.Child, ticketType: TicketType.Free);
         }
 
         private static CustomerCondition FindCustomerCondition(uint age)
@@ -42,10 +42,10 @@ namespace Bio
             return customerConditions.LastOrDefault();
         }
 
-        private static void AddCustomerCondition(AgeType ageType, uint price)
+        private static void AddCustomerCondition(AgeType ageType, TicketType ticketType)
         {
             customerConditions[customerConditionIndex].AgeType = ageType;
-            customerConditions[customerConditionIndex].Price = price;
+            customerConditions[customerConditionIndex].TicketType = ticketType;
             customerConditionIndex++;
         }
 
@@ -94,7 +94,7 @@ namespace Bio
         private static void SellSingelTicket()
         {
             var customerCondition = FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder"));
-            var cost = customerCondition.Price;
+            var cost = (uint) customerCondition.TicketType;
             var textType = "";
             switch (customerCondition.AgeType)
             {
@@ -155,7 +155,7 @@ namespace Bio
 
             for (int i = 0; i < numberOfCustomers; i++)
             {
-                totalCost += FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder")).Price;
+                totalCost += (uint) FindCustomerCondition(Tool<uint>.AskForAnInput("Ålder?", "en ålder")).TicketType;
             }
 
             Console.WriteLine($"Antal personer: {numberOfCustomers}");
