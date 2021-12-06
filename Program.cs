@@ -70,7 +70,7 @@ namespace Bio
             var age = Tool<uint>.AskForAnInput("Ålder?", "en ålder");
             //var customerCondition = Sell.FindCustomerCondition(age);
             //var cost = (uint) customerCondition.TicketType;
-            var customer= sell.AddCustomer(age);
+            var customer = sell.AddCustomer(age);
 
             var textType = "";
 
@@ -104,10 +104,7 @@ namespace Bio
         {
             var text = Tool<string>.AskForAnInput("Text?", "en text");
 
-            //var i = 1;
-            //Console.WriteLine(string.Concat(Enumerable.Repeat(text, 10).Select(t => $"{i}. {t}{(i++ < 10 ? ", " : ".")}")));
-            for (int i = 1; i <= 10; i++)
-                Console.Write($"{i}. {text}{(i < 10 ? ", " : ".\r\n")}");
+            Console.Write(TextManagment.RepeatTextTenTimes(text));
         }
 
         private static void FindTheThirdWord()
@@ -115,12 +112,12 @@ namespace Bio
             bool success = false;
             do
             {
-                var sentence = Tool<string>.AskForAnInput("Skriv upp en mening med minst 3 ord", "en menning med minst 3 ord");
-                var subSentence = Regex.Replace(sentence.Trim(), @"\s+", " ").Split(' ');
+                var sentence = Tool<string>.AskForAnInput("Skriv upp en mening med minst 3 ord", "en mening med minst 3 ord");
+                var theThirdWord = TextManagment.FindTheThirdWord(sentence);
 
-                if (subSentence.Length >= 3)
+                if (!string.IsNullOrEmpty(theThirdWord))
                 {
-                    Console.WriteLine($"Det tredje ordet är \"{subSentence[2]}\"");
+                    Console.WriteLine($"Det tredje ordet är \"{theThirdWord}\"");
                     success = true;
                 }
 
