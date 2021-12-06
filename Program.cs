@@ -72,31 +72,8 @@ namespace Bio
             //var cost = (uint) customerCondition.TicketType;
             var customer = sell.AddCustomer(age);
 
-            var textType = "";
-
-            //switch (customerCondition.AgeType)
-            switch (customer.AgeType)
-            {
-                case AgeType.Centenarian:
-                    textType = "Hundraåring";
-                    break;
-                case AgeType.Pensioner:
-                    textType = "Pensionär";
-                    break;
-                case AgeType.Adult:
-                    textType = "Standard";
-                    break;
-                case AgeType.Young:
-                    textType = "Ungdoms";
-                    break;
-                case AgeType.Child:
-                    textType = "Barn";
-                    break;
-                default:
-                    break;
-            }
-            //Console.WriteLine($"{textType}pris: {cost}");
-            Console.WriteLine($"{textType}pris: {sell.TotalCost}");
+            //Console.WriteLine($"{customerCondition.ToString()}pris: {cost}");
+            Console.WriteLine($"{customer.ToString()}pris: {sell.TotalCost}");
             sell.RemoveAllCustomers();
         }
 
