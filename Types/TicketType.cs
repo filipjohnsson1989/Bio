@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Bio.Types
 {
+    //Att använda istället för magiska strängar
+    //Siffror är priserna för varje biljettgrupp
     enum TicketType
     {
         Free = 0,
